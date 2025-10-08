@@ -60,6 +60,7 @@ public class Card {
      * When the object is confirmed, it is then cast for comparison.
      * @param pObj   the reference object with which to compare.
      * @return will return true if the card is a duplicate, false otherwise.
+     * @author Serena Shushack
      */
     @Override
     public boolean equals(Object pObj) {
