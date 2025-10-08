@@ -17,12 +17,16 @@ public class Deck extends CardCollection implements CardSource {
      * The list of cards in the deck.
      */
     private final List<Card> aCards = new ArrayList<>();
-
+    /**
+     * The single instance of the deck, implementing singleton design pattern.
+     * @see <a href="https://refactoring.guru/design-patterns/singleton">...</a>
+     */
+    private static Deck instance;
     /**
      * Constructs a new Deck containing all standard playing cards.
      * The deck is initialized with one of each rank and suit combination.
      */
-    public Deck() {
+    private Deck() {
         for (Rank currentRank : Rank.values()) {
             for (Suit currentSuit : Suit.values()) {
                 this.aCards.add(new Card(currentRank, currentSuit));
@@ -30,6 +34,17 @@ public class Deck extends CardCollection implements CardSource {
         }
     }
 
+    /**
+     * Creates a single instance of the deck if it isn't already created.
+     *
+     * @return the instance of the deck
+     */
+    public static Deck getInstance() {
+        if(instance == null) {
+            instance = new Deck();
+        }
+        return instance;
+    }
     /**
      * Shuffles the cards in this deck randomly.
      */
@@ -57,3 +72,4 @@ public class Deck extends CardCollection implements CardSource {
         return this.aCards.iterator();
     }
 }
+

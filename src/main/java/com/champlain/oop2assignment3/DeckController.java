@@ -47,8 +47,10 @@ public class DeckController {
 
     /**
      * The deck of cards being managed by this controller.
+     * <p>
+     * Modified to get instance instead of creating a new deck.
      */
-    private final Deck aDeck = new Deck();
+    private final Deck aDeck = Deck.getInstance();
 
     /**
      * The hand of cards being managed by this controller.
