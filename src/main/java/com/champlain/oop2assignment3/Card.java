@@ -53,4 +53,28 @@ public class Card {
     public String toString() {
         return this.getRank() + " of " + this.getSuit();
     }
+
+    /**
+     * The boolean method takes an object and confirms it's a card by getting its class.
+     * It ensures the object isn't null.
+     * When the object is confirmed, it is then cast for comparison.
+     * @param pObj   the reference object with which to compare.
+     * @return will return true if the card is a duplicate, false otherwise.
+     * @author Serena Shushack
+     */
+    @Override
+    public boolean equals(Object pObj) {
+        if (pObj == null) {
+            return false;
+        }
+        if (pObj.getClass() != this.getClass()) {
+            return false;
+        }
+        if (this == pObj) {
+            return true;
+        }
+        Card card = (Card) pObj;
+        return aRank == card.aRank && aSuit == card.aSuit;
+    }
 }
+
