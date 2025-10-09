@@ -65,6 +65,23 @@ public class DeckController {
         this.displayCardCollections();
         this.aSortStrategyChoiceBox.getItems().addAll("Rank First", "Suit First");
         this.aScoreStrategyChoiceBox.getItems().addAll("Simple Count", "Number Of Aces");
+
+        this.testSingleton();
+    }
+
+    /**
+     * Upon initialization, the system will create two decks and test if they return the same instance.
+     */
+    public void testSingleton(){
+        Deck deck1 = Deck.getInstance();
+        Deck deck2 = Deck.getInstance();
+
+        if (deck1 == deck2) {
+            System.out.println("PASS: Both references point to the same instance.");
+        } else {
+            System.out.println("FAIL: Different instances detected.");
+        }
+
     }
 
     /**
