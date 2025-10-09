@@ -72,7 +72,7 @@ public class DeckController {
     /**
      * Upon initialization, the system will create two decks and test if they return the same instance.
      */
-    public void testSingleton(){
+    public void testSingleton() {
         Deck deck1 = Deck.getInstance();
         Deck deck2 = Deck.getInstance();
 
@@ -80,7 +80,8 @@ public class DeckController {
             System.out.println("PASS: Both references point to the same instance.");
         } else {
             System.out.println("FAIL: Different instances detected.");
-    	}
+        }
+    }
         
     /**
      * Upon initialization the system will test the equality of three cards.
