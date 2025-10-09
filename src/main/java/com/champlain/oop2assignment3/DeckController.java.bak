@@ -65,23 +65,10 @@ public class DeckController {
         this.displayCardCollections();
         this.aSortStrategyChoiceBox.getItems().addAll("Rank First", "Suit First");
         this.aScoreStrategyChoiceBox.getItems().addAll("Simple Count", "Number Of Aces");
-        this.testSingleton();
-		this.testEquals();
+<<<<<<< HEAD
+        this.testEquals();
     }
-    
-    /**
-     * Upon initialization, the system will create two decks and test if they return the same instance.
-     */
-    public void testSingleton(){
-        Deck deck1 = Deck.getInstance();
-        Deck deck2 = Deck.getInstance();
 
-        if (deck1 == deck2) {
-            System.out.println("PASS: Both references point to the same instance.");
-        } else {
-            System.out.println("FAIL: Different instances detected.");
-    	}
-        
     /**
      * Upon initialization the system will test the equality of three cards.
      * The first comparison should return true, the second false.
@@ -93,6 +80,25 @@ public class DeckController {
 
         System.out.println("card1 equals card2: " + card1.equals(card2)); // should print true
         System.out.println("card1 equals card3: " + card1.equals(card3)); // should print false
+=======
+
+        this.testSingleton();
+    }
+
+    /**
+     * Upon initialization, the system will create two decks and test if they return the same instance.
+     */
+    public void testSingleton(){
+        Deck deck1 = Deck.getInstance();
+        Deck deck2 = Deck.getInstance();
+
+        if (deck1 == deck2) {
+            System.out.println("PASS: Both references point to the same instance.");
+        } else {
+            System.out.println("FAIL: Different instances detected.");
+        }
+
+>>>>>>> feature/SingletonImplementation
     }
 
     /**
