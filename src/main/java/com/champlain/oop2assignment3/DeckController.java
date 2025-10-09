@@ -65,6 +65,20 @@ public class DeckController {
         this.displayCardCollections();
         this.aSortStrategyChoiceBox.getItems().addAll("Rank First", "Suit First");
         this.aScoreStrategyChoiceBox.getItems().addAll("Simple Count", "Number Of Aces");
+        this.testEquals();
+    }
+
+    /**
+     * Upon initialization the system will test the equality of three cards.
+     * The first comparison should return true, the second false.
+     */
+    public void testEquals(){
+        Card card1 = new Card(Rank.QUEEN, Suit.CLUBS);
+        Card card2 = new Card(Rank.QUEEN, Suit.CLUBS);
+        Card card3 = new Card(Rank.ACE, Suit.DIAMONDS);
+
+        System.out.println("card1 equals card2: " + card1.equals(card2)); // should print true
+        System.out.println("card1 equals card3: " + card1.equals(card3)); // should print false
     }
 
     /**
