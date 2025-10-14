@@ -97,7 +97,10 @@ public class DeckController {
         System.out.println("card1 equals card2: " + card1.equals(card2)); // should print true
         System.out.println("card1 equals card3: " + card1.equals(card3)); // should print false
     }
-
+    /**
+     * Tests sorting cards using the {@link RankFirstComparator}.
+     * Prints cards before and after sorting for verification.
+     */
     public void testRankFirstComparator() {
         ArrayList<Card> cards = new ArrayList<>();
         cards.add(new Card(Rank.ACE, Suit.SPADES));
@@ -143,7 +146,7 @@ public class DeckController {
             switch (choice) {
                 case "Rank First":
                     // TODO: Replace the following line of code.
-                    this.aDeckTextArea.setText("This does not sort by rank first yet.");
+                    this.aDeck.sort(new RankFirstComparator());
                     break;
                 case "Suit First":
                     // TODO: Replace the following line of code.
@@ -170,7 +173,7 @@ public class DeckController {
         } else {
             switch (choice) {
                 case "Rank First":
-                  
+
                     this.aDeck.sort(new RankFirstComparator());
                     break;
                 case "Suit First":
