@@ -6,6 +6,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Controller class for managing the deck and hand of cards in the user interface.
@@ -68,7 +69,9 @@ public class DeckController {
         this.aScoreStrategyChoiceBox.getItems().addAll("Simple Count", "Number Of Aces");
         this.testSingleton();
 		this.testEquals();
-        this.testRankFirstComparator();
+        this.testComparator("RankFirstComparator", new RankFirstComparator());
+        this.testComparator("SuitFirstComparator", new SuitFirstComparator());
+
     }
     
     /**
@@ -98,28 +101,32 @@ public class DeckController {
         System.out.println("card1 equals card3: " + card1.equals(card3)); // should print false
     }
     /**
-     * Tests sorting cards using the {@link RankFirstComparator}.
-     * Prints cards before and after sorting for verification.
+     * Tests a given Comparator by sorting and displaying a sample list of cards.
+     *
+     * @param name the name of the comparator being tested
+     * @param comparator the Comparator instance (RankFirstComparator or SuitFirstComparator)
      */
-    public void testRankFirstComparator() {
+    public void testComparator(String name, Comparator<Card> comparator) {
         ArrayList<Card> cards = new ArrayList<>();
         cards.add(new Card(Rank.ACE, Suit.SPADES));
         cards.add(new Card(Rank.KING, Suit.CLUBS));
-        cards.add(new Card(Rank.ACE, Suit.CLUBS));
-        cards.add(new Card(Rank.KING, Suit.HEARTS));
+        cards.add(new Card(Rank.QUEEN, Suit.DIAMONDS));
+        cards.add(new Card(Rank.TEN, Suit.CLUBS));
 
-        System.out.println("\nBefore sorting (RankFirstComparator):");
+        System.out.println("\nBefore sorting (" + name + "):");
         for (Card c : cards) {
             System.out.println(c);
         }
 
-        cards.sort(new RankFirstComparator());
+        cards.sort(comparator);
 
-        System.out.println("\nAfter sorting (RankFirstComparator):");
+        System.out.println("\nAfter sorting (" + name + "):");
         for (Card c : cards) {
             System.out.println(c);
         }
     }
+
+
 
     /**
      * Handles the event when the shuffle button is clicked.
@@ -131,33 +138,6 @@ public class DeckController {
         this.displayCardCollections();
     }
 
-    /**
-     * Handles the event when the sort button is clicked.
-     * Sorts the deck based on the selected sorting strategy.
-     * Displays an error alert if no strategy is selected.
-     */
-    @FXML
-    protected void onSortButtonClick() {
-        String choice = this.aSortStrategyChoiceBox.getValue();
-        if (choice == null) {
-            Alert selectionErrorAlert = new Alert(Alert.AlertType.ERROR, "Please choose a sorting strategy first.");
-            selectionErrorAlert.showAndWait();
-        } else {
-            switch (choice) {
-                case "Rank First":
-                    // TODO: Replace the following line of code.
-                    this.aDeck.sort(new RankFirstComparator());
-                    break;
-                case "Suit First":
-                    // TODO: Replace the following line of code.
-                    this.aDeckTextArea.setText("This does not sort by suit first yet.");
-                    break;
-                default:
-                    this.aDeckTextArea.setText("This should not happen! You messed up.");
-                    break;
-            }
-        }
-    }
 
     /**
      * Handles the event when the score button is clicked.
@@ -173,12 +153,14 @@ public class DeckController {
         } else {
             switch (choice) {
                 case "Rank First":
-
-                    this.aDeck.sort(new RankFirstComparator());
+                     // TODO: Replace the following line of code.
+                    this.aHand.sort(new RankFirstComparator());
+                    this.displayCardCollections();
                     break;
                 case "Suit First":
                     // TODO: Replace the following line of code.
-                    this.aScoreLabel.setText("Number of aces...");
+                    this.aHand.sort(new SuitFirstComparator());
+                    this.displayCardCollections(); // refresh the display
                     break;
                 default:
                     this.aDeckTextArea.setText("This should not happen! You messed up.");
