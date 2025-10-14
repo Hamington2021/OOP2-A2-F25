@@ -49,6 +49,16 @@ public class Deck extends CardCollection implements CardSource {
         return instance;
     }
 
+    /**
+     * Sorts the cards in this deck using the provided comparator.
+     * <p>
+     * This method allows for different sorting strategies, such as
+     * sorting by rank first or suit first, depending on the comparator
+     * passed as an argument.
+     * </p>
+     *
+     * @param comparator the comparator used to define the sorting order
+     */
     public void sort(Comparator<Card> comparator) {
         this.aCards.sort(comparator);
     }
