@@ -138,33 +138,6 @@ public class DeckController {
         this.displayCardCollections();
     }
 
-    /**
-     * Handles the event when the sort button is clicked.
-     * Sorts the deck based on the selected sorting strategy.
-     * Displays an error alert if no strategy is selected.
-     */
-    @FXML
-    protected void onSortButtonClick() {
-        String choice = this.aSortStrategyChoiceBox.getValue();
-        if (choice == null) {
-            Alert selectionErrorAlert = new Alert(Alert.AlertType.ERROR, "Please choose a sorting strategy first.");
-            selectionErrorAlert.showAndWait();
-        } else {
-            switch (choice) {
-                case "Rank First":
-                    // TODO: Replace the following line of code.
-                    this.aDeck.sort(new RankFirstComparator());
-                    break;
-                case "Suit First":
-                    // TODO: Replace the following line of code.
-                    this.aDeckTextArea.setText("This does not sort by suit first yet.");
-                    break;
-                default:
-                    this.aDeckTextArea.setText("This should not happen! You messed up.");
-                    break;
-            }
-        }
-    }
 
     /**
      * Handles the event when the score button is clicked.
