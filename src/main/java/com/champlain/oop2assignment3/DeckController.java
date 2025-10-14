@@ -170,7 +170,7 @@ public class DeckController {
         } else {
             switch (choice) {
                 case "Rank First":
-                    // TODO: Replace the following line of code.
+                  
                     this.aDeck.sort(new RankFirstComparator());
                     break;
                 case "Suit First":
