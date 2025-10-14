@@ -19,10 +19,10 @@ public class RankFirstComparator implements Comparator<Card> {
     public int compare(Card c1, Card c2) {
         int rankComparison = c1.getRank().compareTo(c2.getRank());
 
-        if (rankComparison == 0) {
-            return c1.getSuit().compareTo(c2.getSuit());
+        if (rankComparison != 0) {
+            return rankComparison;
         }
 
-        return rankComparison;
+        return c1.getSuit().compareTo(c2.getSuit());
     }
 }

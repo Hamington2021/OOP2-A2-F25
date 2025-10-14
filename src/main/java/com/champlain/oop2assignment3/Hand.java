@@ -3,6 +3,8 @@ package com.champlain.oop2assignment3;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Comparator;
+import java.util.Collections;
 
 /**
  * Represents a hand of playing cards.
@@ -25,6 +27,11 @@ public class Hand extends CardCollection {
     public void addCard(Card pCard) {
         this.aCards.add(pCard);
     }
+
+    public void sort(Comparator<Card> comparator) {
+      Collections.sort(this.aCards, comparator);
+    }
+
 
     /**
      * Checks if this hand is empty.
