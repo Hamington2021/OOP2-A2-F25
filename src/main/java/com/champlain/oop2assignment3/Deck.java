@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Comparator;
 
 /**
  * Represents a deck of playing cards.
@@ -19,9 +20,11 @@ public class Deck extends CardCollection implements CardSource {
     private final List<Card> aCards = new ArrayList<>();
     /**
      * The single instance of the deck, implementing singleton design pattern.
+     *
      * @see <a href="https://refactoring.guru/design-patterns/singleton">...</a>
      */
     private static Deck instance;
+
     /**
      * Constructs a new Deck containing all standard playing cards.
      * The deck is initialized with one of each rank and suit combination.
@@ -44,6 +47,10 @@ public class Deck extends CardCollection implements CardSource {
             instance = new Deck();
         }
         return instance;
+    }
+
+    public void sort(Comparator<Card> comparator) {
+        this.aCards.sort(comparator);
     }
     /**
      * Shuffles the cards in this deck randomly.

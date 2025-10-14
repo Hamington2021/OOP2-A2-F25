@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import java.util.ArrayList;
 
 /**
  * Controller class for managing the deck and hand of cards in the user interface.
@@ -67,6 +68,7 @@ public class DeckController {
         this.aScoreStrategyChoiceBox.getItems().addAll("Simple Count", "Number Of Aces");
         this.testSingleton();
 		this.testEquals();
+        this.testRankFirstComparator();
     }
     
     /**
@@ -95,6 +97,29 @@ public class DeckController {
         System.out.println("card1 equals card2: " + card1.equals(card2)); // should print true
         System.out.println("card1 equals card3: " + card1.equals(card3)); // should print false
     }
+    /**
+     * Tests sorting cards using the {@link RankFirstComparator}.
+     * Prints cards before and after sorting for verification.
+     */
+    public void testRankFirstComparator() {
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.add(new Card(Rank.ACE, Suit.SPADES));
+        cards.add(new Card(Rank.KING, Suit.CLUBS));
+        cards.add(new Card(Rank.ACE, Suit.CLUBS));
+        cards.add(new Card(Rank.KING, Suit.HEARTS));
+
+        System.out.println("\nBefore sorting (RankFirstComparator):");
+        for (Card c : cards) {
+            System.out.println(c);
+        }
+
+        cards.sort(new RankFirstComparator());
+
+        System.out.println("\nAfter sorting (RankFirstComparator):");
+        for (Card c : cards) {
+            System.out.println(c);
+        }
+    }
 
     /**
      * Handles the event when the shuffle button is clicked.
@@ -121,7 +146,7 @@ public class DeckController {
             switch (choice) {
                 case "Rank First":
                     // TODO: Replace the following line of code.
-                    this.aDeckTextArea.setText("This does not sort by rank first yet.");
+                    this.aDeck.sort(new RankFirstComparator());
                     break;
                 case "Suit First":
                     // TODO: Replace the following line of code.
@@ -147,16 +172,16 @@ public class DeckController {
             selectionErrorAlert.showAndWait();
         } else {
             switch (choice) {
-                case "Simple Count":
-                    // TODO: Replace the following line of code.
-                    this.aScoreLabel.setText("Simple count...");
+                case "Rank First":
+
+                    this.aDeck.sort(new RankFirstComparator());
                     break;
-                case "Number Of Aces":
+                case "Suit First":
                     // TODO: Replace the following line of code.
                     this.aScoreLabel.setText("Number of aces...");
                     break;
                 default:
-                    this.aScoreLabel.setText("This should not happen! You messed up.");
+                    this.aDeckTextArea.setText("This should not happen! You messed up.");
                     break;
             }
         }
